@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced To-Do List</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    
+        <div class="todo-container">
+            <h1>TO-DO LIST 📋</h1>
+    
+            <!-- Input field to add new tasks -->
+            <div class="input-container">
+                <input type="text" id="task-input" placeholder="Add your text...">
+                <button class="add-btn" onclick="addTask()">Add</button>
+            </div>
+    
+            <!-- To-Do List -->
+            <ul class="todo-list" id="todo-list">
+                <li>
+                    <input type="checkbox">
+                    <span>Learn HTML & CSS by 7pm</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">×</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span>Practice JavaScript by 8pm</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">×</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span>Create a personal portfolio by 9pm</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">×</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span>Study UI/UX principles by 11pm</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">×</button>
+                </li>
+            </ul>
+        </div>
+    
+        <script>
+            // Function to add new task
+            function addTask() {
+                const taskInput = document.getElementById('task-input');
+                const taskValue = taskInput.value.trim();
+                
+                if (taskValue) {
+                    // Create new task item
+                    const newTask = document.createElement('li');
+                    
+                    // Create checkbox
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    
+                    // Create task span
+                    const taskSpan = document.createElement('span');
+                    taskSpan.textContent = taskValue;
+    
+                    // Create delete button
+                    const deleteButton = document.createElement('button');
+                    deleteButton.classList.add('delete-btn');
+                    deleteButton.textContent = '×';
+                    deleteButton.onclick = function() {
+                        deleteTask(deleteButton);
+                    };
+    
+                    // Add checkbox, task span, and delete button to the new list item
+                    newTask.appendChild(checkbox);
+                    newTask.appendChild(taskSpan);
+                    newTask.appendChild(deleteButton);
+    
+                    // Add the new task to the list
+                    document.getElementById('todo-list').appendChild(newTask);
+    
+                    // Clear input
+                    taskInput.value = '';
+                }
+            }
+    
+            // Function to delete task
+            function deleteTask(button) {
+                const taskItem = button.parentElement;
+                taskItem.remove();
+            }
+        </script>
+    
+    </body>
+    </html>
+    
